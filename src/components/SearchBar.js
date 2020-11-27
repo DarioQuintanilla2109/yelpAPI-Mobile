@@ -14,9 +14,7 @@ const SearchBar = ({ term, onTermChange, onTermSubmit }) => {
         autoCorrect={false}
         onChangeText={onTermChange}
         onEndEditing={onTermSubmit}
-      >
-        Search barr
-      </TextInput>
+      ></TextInput>
     </View>
   )
 }

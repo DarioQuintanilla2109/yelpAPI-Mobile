@@ -1,20 +1,21 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { View, Text, StyleSheet } from 'react-native'
 import SearchBar from '../components/SearchBar'
-import yelp from '../api/yelp'
+import useResults from '../hooks/useResults'
 
 const SearchScreen = () => {
   const [searchTerm, setSearchTerm] = useState('')
-  const [results, setResults] = useState([])
+  const [searchAPI, results, err] = useResults()
 
   return (
     <View>
       <SearchBar
         searchTerm={searchTerm}
-        onTermChange={newTerm => setSearchTerm(newTerm)}
-        onTermSubmit={() => console.log('term was submitted')}
+        //passing in reference to the function we want to call
+        onTermChange={setSearchTerm}
+        onTermSubmit={() => searchAPI(searchTerm)}
       />
-      <Text>{searchTerm}</Text>
+      {err ? <Text>{err}</Text> : null}
       <Text>We have found {results.length} results </Text>
     </View>
   )
