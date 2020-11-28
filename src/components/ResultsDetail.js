@@ -1,5 +1,23 @@
 import React from 'react'
-import { View, Image, Text, StyleSheet, TouchableHighlight } from 'react-native'
+import {
+  View,
+  Image,
+  Text,
+  StyleSheet,
+  TouchableHighlight,
+  Linking,
+} from 'react-native'
+
+const linkTo = phoneNumber => {
+  let number = phoneNumber
+  number = number.toString()
+  if (Platform.OS === 'ios') {
+    number = `telprompt:${number}`
+  } else {
+    number = `tel:${number}`
+  }
+  return Linking.openURL(number)
+}
 
 const ResultsDetail = ({ result }) => {
   return (
@@ -7,8 +25,8 @@ const ResultsDetail = ({ result }) => {
       <Image style={styles.imgStyle} source={{ uri: result.image_url }} />
       <Text style={styles.nameStyle}>{result.name}</Text>
       <Text>{result.rating} Stars</Text>
-      <TouchableHighlight>
-        <Text>{result.phone}</Text>
+      <TouchableHighlight onPress>
+        <Text onPress={() => linkTo(result.phone)}>{result.phone}</Text>
       </TouchableHighlight>
     </View>
   )
