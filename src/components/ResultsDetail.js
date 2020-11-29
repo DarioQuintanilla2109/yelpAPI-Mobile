@@ -21,18 +21,24 @@ const linkTo = phoneNumber => {
 
 const ResultsDetail = ({ result }) => {
   return (
-    <View>
+    <View style={styles.container}>
       <Image style={styles.imgStyle} source={{ uri: result.image_url }} />
       <Text style={styles.nameStyle}>{result.name}</Text>
       <Text>{result.rating} Stars</Text>
-      <TouchableHighlight onPress>
-        <Text onPress={() => linkTo(result.phone)}>{result.phone}</Text>
+      <TouchableHighlight>
+        <Text style={styles.numStyle} onPress={() => linkTo(result.phone)}>
+          {result.phone}
+        </Text>
       </TouchableHighlight>
     </View>
   )
 }
 
 const styles = StyleSheet.create({
+  container: {
+    marginLeft: 15,
+    marginTop: 15,
+  },
   imgStyle: {
     width: 250,
     height: 120,
@@ -40,6 +46,14 @@ const styles = StyleSheet.create({
   },
   nameStyle: {
     fontWeight: 'bold',
+  },
+  numStyle: {
+    color: 'rgb(0,50,200)',
+    borderColor: 'red',
+    borderWidth: 3,
+    width: 110,
+    borderRadius: 10,
+    borderColor: 'rgb(220, 218, 238)',
   },
 })
 

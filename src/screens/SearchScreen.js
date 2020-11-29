@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, ScrollView } from 'react-native'
 import SearchBar from '../components/SearchBar'
 import useResults from '../hooks/useResults'
 import ResultsList from '../components/ResultsList'
@@ -17,7 +17,7 @@ const SearchScreen = () => {
   }
 
   return (
-    <View>
+    <View style={styles.appStyle}>
       <SearchBar
         searchTerm={searchTerm}
         //passing in reference to the function we want to call
@@ -25,15 +25,26 @@ const SearchScreen = () => {
         onTermSubmit={() => searchAPI(searchTerm)}
       />
       {err ? <Text>{err}</Text> : null}
-      <Text>We have found {results.length} results </Text>
-
-      <ResultsList results={filterByPrice('$')} title='Cost Effective' />
-      <ResultsList results={filterByPrice('$$')} title='Pricier' />
-      <ResultsList results={filterByPrice('$$$')} title='Expensive' />
+      <Text style={styles.textStyle}>
+        We have found {results.length} results{' '}
+      </Text>
+      <ScrollView>
+        <ResultsList results={filterByPrice('$')} title='Cost Effective' />
+        <ResultsList results={filterByPrice('$$')} title='Pricier' />
+        <ResultsList results={filterByPrice('$$$')} title='Expensive' />
+      </ScrollView>
     </View>
   )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  textStyle: {
+    textAlign: 'center',
+  },
+  //scrollable for andriod
+  appStyle: {
+    flex: 1,
+  },
+})
 
 export default SearchScreen
