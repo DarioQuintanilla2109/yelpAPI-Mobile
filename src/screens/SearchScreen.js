@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet, ScrollView } from 'react-native'
+import { View, Text, StyleSheet, ScrollView, Animated } from 'react-native'
 import SearchBar from '../components/SearchBar'
 import useResults from '../hooks/useResults'
 import ResultsList from '../components/ResultsList'
@@ -24,10 +24,9 @@ const SearchScreen = () => {
         onTermChange={setSearchTerm}
         onTermSubmit={() => searchAPI(searchTerm)}
       />
+
       {err ? <Text>{err}</Text> : null}
-      <Text style={styles.textStyle}>
-        We have found {results.length} results{' '}
-      </Text>
+
       <ScrollView>
         <ResultsList results={filterByPrice('$')} title='Cost Effective' />
         <ResultsList results={filterByPrice('$$')} title='Pricier' />
@@ -48,3 +47,13 @@ const styles = StyleSheet.create({
 })
 
 export default SearchScreen
+
+// const scrollY = new Animated.Value(0)
+//   const translateY = scrollY.interpolate({
+//     inputRange: [0, 50],
+//     outputRange: [0, -50],
+//   })
+// onScroll={e => {
+//   //how much user has scrolled
+//   scrollY.setValue(e.native.event.contentOffset.y)
+// }}
