@@ -3,7 +3,9 @@ import { View, Text, StyleSheet, ScrollView, Animated } from 'react-native'
 import SearchBar from '../components/SearchBar'
 import useResults from '../hooks/useResults'
 import ResultsList from '../components/ResultsList'
-
+import { FontAwesome } from '@expo/vector-icons'
+import { FontAwesome6 } from '@expo/vector-icons'
+import { Feather } from '@expo/vector-icons'
 const SearchScreen = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [searchAPI, results, err] = useResults()
@@ -28,9 +30,29 @@ const SearchScreen = () => {
       {err ? <Text>{err}</Text> : null}
 
       <ScrollView>
-        <ResultsList results={filterByPrice('$')} title='Cost Effective' />
-        <ResultsList results={filterByPrice('$$')} title='Pricier' />
-        <ResultsList results={filterByPrice('$$$')} title='Expensive' />
+        <ResultsList
+          results={filterByPrice('$')}
+          title={<FontAwesome name='money' style={styles.moneyStyle} />}
+        />
+        <ResultsList
+          results={filterByPrice('$$')}
+          title={
+            <>
+              <FontAwesome name='money' style={styles.moneyStyle} />
+              <FontAwesome name='money' style={styles.moneyStyle} />
+            </>
+          }
+        />
+        <ResultsList
+          results={filterByPrice('$$$')}
+          title={
+            <>
+              <FontAwesome name='money' style={styles.moneyStyle} />
+              <FontAwesome name='money' style={styles.moneyStyle} />
+              <FontAwesome name='money' style={styles.moneyStyle} />
+            </>
+          }
+        />
       </ScrollView>
     </View>
   )
@@ -43,6 +65,12 @@ const styles = StyleSheet.create({
   //scrollable for andriod
   appStyle: {
     flex: 1,
+    backgroundColor: '#ffe3d8',
+  },
+  moneyStyle: {
+    marginRight: 5,
+    fontSize: 24,
+    color: '#03506f',
   },
 })
 

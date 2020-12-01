@@ -79,8 +79,6 @@ const styles = StyleSheet.create({
     fontSize: 22,
     marginBottom: 20,
     marginTop: 20,
-    borderWidth: 4,
-    borderRadius: 10,
     borderColor: '#0a043c',
   },
   iconStyle: {

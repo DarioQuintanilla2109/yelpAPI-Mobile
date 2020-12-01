@@ -43,6 +43,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginLeft: 15,
     marginTop: 15,
+    marginRight: 9,
   },
 })
 

@@ -7,6 +7,8 @@ import {
   TouchableHighlight,
   Linking,
 } from 'react-native'
+import { Feather } from '@expo/vector-icons'
+import { Entypo } from '@expo/vector-icons'
 
 const linkTo = phoneNumber => {
   let number = phoneNumber
@@ -21,16 +23,21 @@ const linkTo = phoneNumber => {
 
 const ResultsDetail = ({ result }) => {
   return (
-    <View style={styles.container}>
-      <Image style={styles.imgStyle} source={{ uri: result.image_url }} />
-      <Text style={styles.nameStyle}>{result.name}</Text>
-      <Text>{result.rating} Stars</Text>
-      <TouchableHighlight>
-        <Text style={styles.numStyle} onPress={() => linkTo(result.phone)}>
-          {result.phone}
+    <>
+      <View style={styles.container}>
+        <Image style={styles.imgStyle} source={{ uri: result.image_url }} />
+        <Text style={styles.nameStyle}>{result.name}</Text>
+        <Text style={styles.starReview}>
+          {result.rating}{' '}
+          <Entypo name='star-outlined' style={styles.starStyle} />
         </Text>
-      </TouchableHighlight>
-    </View>
+        <TouchableHighlight>
+          <Text style={styles.numStyle} onPress={() => linkTo(result.phone)}>
+            <Feather style={styles.phoneStyle} name='phone-outgoing' />
+          </Text>
+        </TouchableHighlight>
+      </View>
+    </>
   )
 }
 
@@ -46,14 +53,19 @@ const styles = StyleSheet.create({
   },
   nameStyle: {
     fontWeight: 'bold',
+    flex: 1,
   },
-  numStyle: {
-    color: 'rgb(0,50,200)',
-    borderColor: 'red',
-    borderWidth: 3,
-    width: 110,
-    borderRadius: 10,
-    borderColor: 'rgb(220, 218, 238)',
+  starStyle: {
+    fontSize: 27,
+    color: '#03506f',
+  },
+  phoneStyle: {
+    color: '#03506f',
+    fontSize: 27,
+  },
+  starReview: {
+    fontSize: 25,
+    flex: 1,
   },
 })
 
