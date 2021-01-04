@@ -34,8 +34,19 @@ const ResultsShowScreen = ({ navigation }) => {
     getResult(id)
   }, [])
 
+  const Loading = () => {
+    return (
+      <View style={styles.loadingView}>
+        <Image
+          source={require('../images/giphy.gif')}
+          style={styles.gifStyle}
+        />
+      </View>
+    )
+  }
+
   if (!result) {
-    return null
+    return Loading()
   }
 
   return (
@@ -65,7 +76,7 @@ const styles = StyleSheet.create({
   imgStyle: {
     height: 200,
     width: 300,
-    borderRadius: 50,
+    borderRadius: 34,
     marginBottom: 15,
   },
   viewStyle: {
@@ -85,6 +96,13 @@ const styles = StyleSheet.create({
     marginBottom: 35,
     fontSize: 44,
     color: '#03506f',
+  },
+  loadingView: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  gifStyle: {
+    borderRadius: 40,
   },
 })
 

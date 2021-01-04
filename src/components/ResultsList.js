@@ -8,6 +8,9 @@ import {
 } from 'react-native'
 import ResultsDetail from './ResultsDetail'
 import { withNavigation } from 'react-navigation'
+import { Dimensions } from 'react-native'
+
+const { width, height } = Dimensions.get('window')
 
 const ResultsList = ({ title, results, navigation }) => {
   if (!results.length) {

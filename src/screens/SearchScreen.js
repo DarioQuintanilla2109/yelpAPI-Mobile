@@ -15,6 +15,7 @@ import { FontAwesome } from '@expo/vector-icons'
 import { FontAwesome6 } from '@expo/vector-icons'
 import { Feather } from '@expo/vector-icons'
 import { MIAMI } from '../images/ma'
+
 const SearchScreen = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [searchAPI, results, err] = useResults()
@@ -38,21 +39,21 @@ const SearchScreen = () => {
 
       {err ? <Text>{err}</Text> : null}
 
-      <ScrollView>
-        <ResultsList
+      <ScrollView style={styles.scrollView}>
+        {/* <ResultsList
           results={filterByPrice('$')}
           title={<FontAwesome name='money' style={styles.moneyStyle} />}
-        />
+        /> */}
         <ResultsList
           results={filterByPrice('$$')}
-          title={
-            <>
-              <FontAwesome name='money' style={styles.moneyStyle} />
-              <FontAwesome name='money' style={styles.moneyStyle} />
-            </>
-          }
+          // title={
+          //   <>
+          //     <FontAwesome name='money' style={styles.moneyStyle} />
+          //     <FontAwesome name='money' style={styles.moneyStyle} />
+          //   </>
+          // }
         />
-        <ResultsList
+        {/* <ResultsList
           results={filterByPrice('$$$')}
           title={
             <>
@@ -61,7 +62,7 @@ const SearchScreen = () => {
               <FontAwesome name='money' style={styles.moneyStyle} />
             </>
           }
-        />
+        /> */}
       </ScrollView>
     </View>
   )
@@ -102,6 +103,9 @@ const styles = StyleSheet.create({
     marginLeft: 15,
     borderRadius: 50,
     marginBottom: 20,
+  },
+  scrollView: {
+    marginTop: 250,
   },
 })
 
