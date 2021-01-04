@@ -1,11 +1,20 @@
 import React, { useState } from 'react'
-import { View, Text, StyleSheet, ScrollView, Animated } from 'react-native'
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  Animated,
+  TouchableOpacity,
+  Image,
+} from 'react-native'
 import SearchBar from '../components/SearchBar'
 import useResults from '../hooks/useResults'
 import ResultsList from '../components/ResultsList'
 import { FontAwesome } from '@expo/vector-icons'
 import { FontAwesome6 } from '@expo/vector-icons'
 import { Feather } from '@expo/vector-icons'
+import { MIAMI } from '../images/ma'
 const SearchScreen = () => {
   const [searchTerm, setSearchTerm] = useState('')
   const [searchAPI, results, err] = useResults()
@@ -58,6 +67,16 @@ const SearchScreen = () => {
   )
 }
 
+SearchScreen.navigationOptions = ({ navigation }) => {
+  return {
+    headerLeft: () => (
+      <TouchableOpacity onPress={() => navigation.navigate('Index')}>
+        <Image style={styles.imgStyle} source={MIAMI} />
+      </TouchableOpacity>
+    ),
+  }
+}
+
 const styles = StyleSheet.create({
   textStyle: {
     textAlign: 'center',
@@ -65,12 +84,24 @@ const styles = StyleSheet.create({
   //scrollable for andriod
   appStyle: {
     flex: 1,
-    backgroundColor: '#ffe3d8',
+    backgroundColor: 'rgb(245,245,245)',
   },
   moneyStyle: {
     marginRight: 5,
     fontSize: 24,
     color: '#03506f',
+  },
+  iconAdd: {
+    fontSize: 28,
+    color: '#ffa62b',
+    marginRight: 15,
+  },
+  imgStyle: {
+    height: 60,
+    width: 60,
+    marginLeft: 15,
+    borderRadius: 50,
+    marginBottom: 20,
   },
 })
 

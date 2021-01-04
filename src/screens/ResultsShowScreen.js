@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   viewStyle: {
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#ffe3d8',
+    backgroundColor: 'rgb(245,245,245)',
     flex: 1,
   },
   nameStyle: {
